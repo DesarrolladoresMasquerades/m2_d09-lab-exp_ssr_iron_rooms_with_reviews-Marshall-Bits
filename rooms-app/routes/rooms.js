@@ -3,14 +3,19 @@ const mongoose = require("mongoose");
 
 const Room = require("../models/Room.model");
 
+
 router.get('/', (req, res) => {
     Room.find().
         then((roomsInDB) => {
             res.render('rooms/rooms',{roomsInDB})
         })
 })
+
 router.get('/create', (req, res) => {
-    res.render('rooms/create-room')
+    if(!req.session.user){
+        res.redirect('/rooms/')
+    }   
+    else res.render('rooms/create-room')
 })
 router.post('/create', (req, res) => {
     const ownerId = req.session.userId

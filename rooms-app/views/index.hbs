@@ -1,4 +1,12 @@
 <h1>Rooms lab 🚀</h1>
 <hr>
-<p>Welcome Ironhacker!</p>
+{{#if notLogged}}
+<p>Welcome!</p>
 <a class="btn btn-primary" href="/auth/signup" role="button">Signup</a>
+<a class="btn btn-primary" href="/auth/login" role="button">Login</a>
+{{else}}
+<p>Welcome {{username}}!</p>
+<a class="btn btn-primary" href="/rooms/create" role="button">Create room</a>
+{{/if}}
+<a class="btn btn-secondary" href="/rooms" role="button">List of rooms</a>
+
