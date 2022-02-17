@@ -1,1 +1,16 @@
 <h1>ROOMS LIST</h1>
+<hr>
+<div class="card-group">
+    {{#each roomsInDB}}
+    <div class="card">
+        <img src="{{imageUrl}}" class="card-img-top" alt="image">
+        <div class="card-body">
+            <h5 class="card-title">{{name}}</h5>
+            <p class="card-text">{{description}}</p>
+        </div>
+        <div class="card-footer">
+            <a href="/rooms/edit/{{id}}" class="text-muted">Edit</a>
+        </div>
+    </div>
+    {{/each}}
+</div>

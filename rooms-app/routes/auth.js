@@ -43,10 +43,8 @@ router.post("/signup", isLoggedOut, (req, res) => {
     });
   }
   */
-  console.log(username);
   // Search the database for a user with the username submitted in the form
   User.findOne( {fullName: username} ).then((found) => {
-    console.log(found);
     // If the user is found, send the message username is taken
     if (found) {
       return res
@@ -69,6 +67,7 @@ router.post("/signup", isLoggedOut, (req, res) => {
       .then((user) => {
         // Bind the user to the session object
         req.session.user = user;
+        req.session.userId = user._id;
         res.redirect("/");
       })
       .catch((error) => {
@@ -143,7 +142,6 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 });
 
 router.get("/logout", isLoggedIn, (req, res) => {
-  console.log("REQ SESSION", req.session.user);
   req.session.destroy((err) => {
     if (err) {
       return res
